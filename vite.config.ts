@@ -9,16 +9,20 @@ export default defineConfig({
     outDir: 'dist',
     assetsDir: 'assets',
     sourcemap: true,
+    chunkSizeWarningLimit: 1000,
     rollupOptions: {
       output: {
         manualChunks: {
-          vendor: ['react', 'react-dom'],
-          three: ['three', '@react-three/fiber', '@react-three/drei'],
+          'react-vendor': ['react', 'react-dom'],
+          'three-vendor': ['three', '@react-three/fiber', '@react-three/drei'],
+          'chart-vendor': ['chart.js', 'react-chartjs-2', 'chartjs-adapter-date-fns'],
+          'ui-vendor': ['framer-motion', 'lucide-react'],
         },
       },
     },
   },
   optimizeDeps: {
     exclude: ['lucide-react'],
+    include: ['three', '@react-three/fiber', '@react-three/drei'],
   },
 });
